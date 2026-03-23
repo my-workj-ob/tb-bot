@@ -3,14 +3,22 @@ const fs = require('fs');
 const path = require('path');
 
 // ==================== SOZLAMALAR ====================
-const TOKEN = process.env.BOT_TOKEN || '8207719958:AAHypY0eleZakBm1SWY8QqpnzcZzfLdhukI';
+const TOKEN = process.env.BOT_TOKEN || 'YOUR_BOT_TOKEN_HERE';
 const bot = new Telegraf(TOKEN);
 
-const DB_FILE = 'database.json';
-const USERS_FILE = 'users.json';
-const STATS_FILE = 'stats.json';
-const ADMINS_FILE = 'admins.json';
-const BROADCAST_LOG = 'broadcast.json';
+// /app read-only, shuning uchun barcha fayllar /data ga saqlanadi
+const DATA_DIR = process.env.DATA_DIR || '/data';
+
+// /data papkasi mavjud bo'lmasa yaratish
+if (!fs.existsSync(DATA_DIR)) {
+    try { fs.mkdirSync(DATA_DIR, { recursive: true }); } catch (e) {}
+}
+
+const DB_FILE      = path.join(DATA_DIR, 'database.json');
+const USERS_FILE   = path.join(DATA_DIR, 'users.json');
+const STATS_FILE   = path.join(DATA_DIR, 'stats.json');
+const ADMINS_FILE  = path.join(DATA_DIR, 'admins.json');
+const BROADCAST_LOG = path.join(DATA_DIR, 'broadcast.json');
 
 // Takroriy update'larni oldini olish
 const processedUpdates = new Set();
