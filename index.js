@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // ==================== SOZLAMALAR ====================
-const TOKEN = process.env.BOT_TOKEN || 'YOUR_BOT_TOKEN_HERE';
+const TOKEN = process.env.BOT_TOKEN || '8207719958:AAHypY0eleZakBm1SWY8QqpnzcZzfLdhukI';
 const bot = new Telegraf(TOKEN);
 
 // /app read-only, shuning uchun barcha fayllar /data ga saqlanadi
